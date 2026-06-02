@@ -6,6 +6,12 @@ import {
   ConstitutionResultEntity,
   PainResultEntity,
 } from '../../assessment/assessment.entities';
+import {
+  ReportDeepAccessEntity,
+  ReportEntity,
+  ReportExportJobEntity,
+  ReportShareLinkEntity,
+} from '../../report/report.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -17,6 +23,10 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       AnswerEntity,
       ConstitutionResultEntity,
       PainResultEntity,
+      ReportEntity,
+      ReportDeepAccessEntity,
+      ReportShareLinkEntity,
+      ReportExportJobEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

@@ -4,6 +4,7 @@ import type {
   AnswerValue,
   ConstitutionResult,
   EventType,
+  RedFlagLevel,
 } from '@tizhice/shared';
 import type { ResumeQuery } from './assessment.service';
 
@@ -15,9 +16,12 @@ export interface StoredAnswer {
   answeredAt: Date;
 }
 
-interface StoredPainResult {
+export interface StoredPainResult {
   resultId: string;
   sessionId: string;
+  areas?: string[];
+  severity?: number | null;
+  redFlagLevel?: RedFlagLevel | null;
 }
 
 export interface StoredAssessmentEvent {
@@ -115,7 +119,15 @@ export class InMemoryAssessmentRepository {
   }
 
   async savePainResult(result: StoredPainResult): Promise<void> {
-    this.painResults.set(result.resultId, { ...result });
+    this.painResults.set(result.resultId, clonePainResult(result));
+  }
+
+  async getPainResultOrThrow(resultId: string): Promise<StoredPainResult> {
+    const result = this.painResults.get(resultId);
+    if (!result) {
+      throw new Error(`Pain result not found: ${resultId}`);
+    }
+    return clonePainResult(result);
   }
 
   async recordCompletionEvent(
@@ -162,5 +174,12 @@ function cloneConstitutionResult(result: ConstitutionResult): ConstitutionResult
     computedAt: new Date(result.computedAt),
     scores: result.scores.map((score) => ({ ...score })),
     concurrent: [...result.concurrent],
+  };
+}
+
+function clonePainResult(result: StoredPainResult): StoredPainResult {
+  return {
+    ...result,
+    areas: result.areas ? [...result.areas] : undefined,
   };
 }

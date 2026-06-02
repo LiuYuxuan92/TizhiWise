@@ -23,7 +23,11 @@ import {
 import { ConstitutionAlgoService } from '../constitution/constitution-algo.service';
 import { ConfigVersionService } from '../infrastructure/config-version/config-version.service';
 import { ConfigKind } from '@tizhice/shared';
-import type { InMemoryAssessmentRepository, StoredAnswer } from './in-memory-assessment.repository';
+import type {
+  InMemoryAssessmentRepository,
+  StoredAnswer,
+  StoredPainResult,
+} from './in-memory-assessment.repository';
 import type { QuestionBankConfig } from './question-bank.fixtures';
 
 interface AssessmentServiceDependencies {
@@ -174,8 +178,14 @@ export class AssessmentService {
       return { resultId: result.resultId, redirectTo: 'REPORT' };
     }
 
+    const redFlag = detectRedFlag(answers);
     const resultId = `pain:${session.id}`;
-    await this.dependencies.repository.savePainResult({ resultId, sessionId: session.id });
+    await this.dependencies.repository.savePainResult({
+      resultId,
+      sessionId: session.id,
+      ...summarizePainAnswers(answers),
+      redFlagLevel: redFlag?.level ?? null,
+    });
     session.status = SessionStatus.SUBMITTED;
     session.submittedAt = new Date();
     await this.dependencies.repository.saveSession(session);
@@ -185,6 +195,10 @@ export class AssessmentService {
 
   async getConstitutionResult(resultId: string): Promise<ConstitutionResult> {
     return this.dependencies.repository.getConstitutionResultOrThrow(resultId);
+  }
+
+  async getPainResult(resultId: string): Promise<StoredPainResult> {
+    return this.dependencies.repository.getPainResultOrThrow(resultId);
   }
 
   private async submitResultFor(
@@ -323,6 +337,18 @@ function detectRedFlag(answers: readonly StoredAnswer[]): RedFlagWarning | undef
     };
   }
   return undefined;
+}
+
+function summarizePainAnswers(
+  answers: readonly StoredAnswer[],
+): Pick<StoredPainResult, 'areas' | 'severity'> {
+  const byId = new Map(answers.map((answer) => [answer.questionId, answer.value]));
+  const areas = byId.get('pain_area');
+  const severity = byId.get('pain_severity');
+  return {
+    areas: Array.isArray(areas) ? areas : undefined,
+    severity: typeof severity === 'number' ? severity : null,
+  };
 }
 
 export function buildDefaultAlgorithmAnswers(
