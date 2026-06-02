@@ -111,7 +111,7 @@ pnpm build
 
 ### 当前实现进度
 
-已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–4：
+已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–5：
 
 - Monorepo 与前后端基础骨架
 - 共享领域枚举与 DTO
@@ -120,6 +120,7 @@ pnpm build
 - 配置版本中心与会话快照
 - 体质判定算法与属性化测试
 - 算法与配置相关 checkpoint 验证
+- 测评会话、题库种子、答题幂等、恢复测评、痛症红旗征与提交闭环
 
 ### 验证状态
 
@@ -242,7 +243,7 @@ pnpm build
 
 ### Current Progress
 
-Stages 1–4 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
+Stages 1–5 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 
 - Monorepo and frontend/backend scaffolding
 - Shared domain enums and DTOs
@@ -251,6 +252,7 @@ Stages 1–4 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 - Configuration version center and session snapshots
 - TCM constitution algorithm with property-based tests
 - Algorithm and configuration checkpoint verification
+- Assessment sessions, seeded question banks, idempotent answer submission, resume flow, pain red-flag warnings, and finalize flow
 
 ### Verification
 

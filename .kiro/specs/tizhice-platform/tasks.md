@@ -107,54 +107,54 @@
 - [x] 4. Checkpoint - 确保算法与配置相关测试通过
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 5. 测评会话与题库服务（R1/R2/R3/R11）
-  - [ ] 5.1 实现题库配置结构与默认种子数据
+- [x] 5. 测评会话与题库服务（R1/R2/R3/R11）
+  - [x] 5.1 实现题库配置结构与默认种子数据
     - 定义体质题库、痛症题库、题目选项、必答规则、题目顺序与版本化 payload schema
     - 提供开发环境默认题库 seed，覆盖痛症与体质双通道
     - _Requirements: 2.1, 2.2, 3.1, 3.2, 11.1_
 
-  - [ ] 5.2 实现 AssessmentSession / Answer / PainResult / ConstitutionResult 数据模型与迁移
+  - [x] 5.2 实现 AssessmentSession / Answer / PainResult / ConstitutionResult 数据模型与迁移
     - 创建测评会话、答案、痛症结果、体质结果表
     - 对 baseProfile、answer value 等敏感字段接入应用层加密转换器
     - _Requirements: 3.7, 4.7, 9.6, 12.1_
 
-  - [ ] 5.3 实现 AssessmentService.createSession 与继续测评查询
+  - [x] 5.3 实现 AssessmentService.createSession 与继续测评查询
     - 创建会话时锁定 questionBankVersion 与 algorithmVersion
     - 支持匿名用户与登录用户；支持 channelSource 归因
     - 实现 getResume(userId/anonymousId, channel)
     - _Requirements: 1.4, 3.3, 10.4, 11.7_
 
-  - [ ] 5.4 实现题目推进、答题提交与修改
+  - [x] 5.4 实现题目推进、答题提交与修改
     - 实现 getNextQuestion、submitAnswer、reviseAnswer
     - 校验必答题、题型、分值范围、选项合法性
     - 同一 session/question 或 idempotencyKey 重复提交保持幂等
     - _Requirements: 2.5, 2.7, 3.2, 3.4, 3.5, 12.2_
 
-  - [ ] 5.5 实现痛症红旗征规则引擎
+  - [x] 5.5 实现痛症红旗征规则引擎
     - 支持疼痛强度、持续时间、麻木无力、夜间痛醒等组合规则
     - 命中规则时返回 URGENT/WARNING 和非诊断声明
     - _Requirements: 2.3, 2.4, 12.5_
 
-  - [ ] 5.6 实现 finalize 测评提交闭环
+  - [x] 5.6 实现 finalize 测评提交闭环
     - 必答题未完成时拒绝提交并定位首个未答题
     - 体质通道调用锁定算法版本计算并持久化结果
     - 痛症通道生成 PainResult 并进入报告流程
     - 提交后写入完成事件
     - _Requirements: 2.6, 3.5, 3.6, 3.7, 10.1_
 
-  - [ ]* 5.7 编写属性测试：答题幂等
+  - [x]* 5.7 编写属性测试：答题幂等
     - **Property 17: 答题幂等**
     - **Validates: Requirements 3.7**
 
-  - [ ]* 5.8 编写属性测试：必答约束
+  - [x]* 5.8 编写属性测试：必答约束
     - **Property 18: 必答约束**
     - **Validates: Requirements 3.5, 2.5**
 
-  - [ ]* 5.9 编写属性测试：恢复一致
+  - [x]* 5.9 编写属性测试：恢复一致
     - **Property 20: 恢复一致**
     - **Validates: Requirements 1.4**
 
-  - [ ]* 5.10 编写属性测试：红旗征触发
+  - [x]* 5.10 编写属性测试：红旗征触发
     - **Property 21: 红旗征触发**
     - **Validates: Requirements 2.4**
 
