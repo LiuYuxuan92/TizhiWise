@@ -111,7 +111,7 @@ pnpm build
 
 ### 当前实现进度
 
-已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–8：
+已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–9：
 
 - Monorepo 与前后端基础骨架
 - 共享领域枚举与 DTO
@@ -124,6 +124,7 @@ pnpm build
 - 动态报告组装、基础/深度报告遮罩、深度访问授权、历史报告、分享链接与图片导出任务
 - 支付订单、微信 JSAPI 支付参数抽象、回调验签幂等、超时关闭、防重复付费、退款与报告权限回收
 - 用户账户、微信登录标识抽象、授权范围、匿名记录归并、“我的”中心与账户删除匿名化
+- 行为事件采集、授权撤回停采、复测趋势、运营看板、聚合导出与小样本抑制
 
 ### 验证状态
 
@@ -246,7 +247,7 @@ pnpm build
 
 ### Current Progress
 
-Stages 1–8 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
+Stages 1–9 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 
 - Monorepo and frontend/backend scaffolding
 - Shared domain enums and DTOs
@@ -259,6 +260,7 @@ Stages 1–8 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 - Dynamic report assembly, basic/deep masking, deep-access grants, report history, share links, and image export jobs
 - Payment orders, WeChat JSAPI payment gateway abstraction, idempotent verified callbacks, timeout closing, duplicate-payment prevention, refunds, and report-access revocation
 - User accounts, WeChat identity abstraction, consent scopes, anonymous-record merge, My Center aggregation, and account deletion anonymization
+- Behavior event tracking, consent-based stop-collection, reassessment trends, operations dashboard, aggregate exports, and small-cell suppression
 
 ### Verification
 

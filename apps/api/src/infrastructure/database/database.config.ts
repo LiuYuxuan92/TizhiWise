@@ -14,6 +14,7 @@ import {
 } from '../../report/report.entities';
 import { PaymentOrderEntity, PaymentTxnLogEntity } from '../../payment/payment.entities';
 import { ConsentEntity, UserEntity } from '../../user/user.entities';
+import { AggregateExportEntity, BehaviorEventEntity } from '../../tracking/tracking.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -33,6 +34,8 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       PaymentTxnLogEntity,
       UserEntity,
       ConsentEntity,
+      BehaviorEventEntity,
+      AggregateExportEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

@@ -172,6 +172,29 @@ export class InMemoryAssessmentRepository {
     return clonePainResult(result);
   }
 
+  async listConstitutionResultsByUser(userId: string): Promise<ConstitutionResult[]> {
+    const sessionIds = new Set(
+      [...this.sessions.values()]
+        .filter((session) => session.userId === userId)
+        .map((session) => session.id),
+    );
+    return [...this.constitutionResults.values()]
+      .filter((result) => sessionIds.has(result.sessionId))
+      .sort((left, right) => left.computedAt.getTime() - right.computedAt.getTime())
+      .map(cloneConstitutionResult);
+  }
+
+  async listPainResultsByUser(userId: string): Promise<StoredPainResult[]> {
+    const sessionIds = new Set(
+      [...this.sessions.values()]
+        .filter((session) => session.userId === userId)
+        .map((session) => session.id),
+    );
+    return [...this.painResults.values()]
+      .filter((result) => sessionIds.has(result.sessionId))
+      .map(clonePainResult);
+  }
+
   async recordCompletionEvent(
     event: Omit<StoredAssessmentEvent, 'id' | 'occurredAt'>,
   ): Promise<void> {
