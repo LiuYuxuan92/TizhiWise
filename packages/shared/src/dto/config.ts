@@ -2,7 +2,7 @@
  * 配置中心与管理后台跨服务 DTO（R11）。
  * 对应 design.md 3.9 ConfigVersionService / AdminService。
  */
-import type { ConfigKind } from '../enums.js';
+import type { AdminPermission, ConfigKind } from '../enums.js';
 
 /** 配置版本（发布即不可变）。 */
 export interface ConfigVersion {
@@ -34,4 +34,34 @@ export interface AuditLog {
   after?: unknown;
   ip: string;
   occurredAt: Date;
+}
+
+/** 管理后台用户。 */
+export interface AdminUser {
+  id: string;
+  username: string;
+  roleIds: string[];
+  active: boolean;
+  createdAt: Date;
+  lastLoginAt?: Date;
+}
+
+/** 管理后台角色与权限集合。 */
+export interface AdminRole {
+  id: string;
+  name: string;
+  permissions: AdminPermission[];
+}
+
+/** 管理端请求上下文。 */
+export interface AdminAuthContext {
+  operator: string;
+  ip: string;
+}
+
+/** 后台登录结果。 */
+export interface AdminLoginResult {
+  token: string;
+  user: AdminUser;
+  permissions: AdminPermission[];
 }

@@ -381,37 +381,37 @@
     - 记录发布时间、平台、操作人
     - _Requirements: 8.4, 8.5_
 
-- [ ] 12. 管理后台 API、RBAC 与审计（R11/R12）
-  - [ ] 12.1 实现 AdminUser / Role / Permission / AuditLog 数据模型
+- [x] 12. 管理后台 API、RBAC 与审计（R11/R12）
+  - [x] 12.1 实现 AdminUser / Role / Permission / AuditLog 数据模型
     - 支持后台用户、角色、权限矩阵、操作审计
     - _Requirements: 11.6, 12.7_
 
-  - [ ] 12.2 实现后台鉴权、权限守卫与默认拒绝策略
+  - [x] 12.2 实现后台鉴权、权限守卫与默认拒绝策略
     - 未授权请求返回 401/403
     - 管理操作均经 RBAC 校验
     - _Requirements: 11.6, 12.7_
 
-  - [ ] 12.3 实现题库管理 API
+  - [x] 12.3 实现题库管理 API
     - 增删改查痛症与体质题目、选项、分值映射
     - 发布新题库版本走 ConfigVersionService
     - _Requirements: 11.1, 11.3_
 
-  - [ ] 12.4 实现算法配置管理 API
+  - [x] 12.4 实现算法配置管理 API
     - 维护阈值、权重、题目-体质映射
     - 发布后冻结版本，仅对新会话生效
     - _Requirements: 11.2, 11.3, 11.7_
 
-  - [ ] 12.5 实现报告模板与内容片段管理 API
+  - [x] 12.5 实现报告模板与内容片段管理 API
     - 按体质/痛症类型维护差异化内容
     - 强制保留免责声明片段
     - _Requirements: 11.4, 12.5_
 
-  - [ ] 12.6 实现 AI Agent 工作流管理 API
+  - [x] 12.6 实现 AI Agent 工作流管理 API
     - 维护 Agent 角色、顺序、提示词模板、模型配置
     - 发布工作流版本并记录审计
     - _Requirements: 11.5, 7.10_
 
-  - [ ] 12.7 实现管理操作审计日志
+  - [x] 12.7 实现管理操作审计日志
     - 记录 operator、action、resource、before/after、ip、occurredAt
     - 对关键配置发布、退款、审批发布均写审计
     - _Requirements: 11.6, 6.10, 8.5_

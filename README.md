@@ -111,7 +111,7 @@ pnpm build
 
 ### 当前实现进度
 
-已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–11：
+已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–12：
 
 - Monorepo 与前后端基础骨架
 - 共享领域枚举与 DTO
@@ -127,6 +127,7 @@ pnpm build
 - 行为事件采集、授权撤回停采、复测趋势、运营看板、聚合导出与小样本抑制
 - AI 多 Agent 内容生成、LLM Provider 抽象、确定性 mock、合规门禁、失败隔离、重试上限与版本追踪
 - 内容草稿管理、平台/状态/时间/标签筛选、编辑版本历史、风险人工确认、审批/驳回/废弃状态机、API 发布与人工导出记录
+- 管理后台服务层 API、管理员/角色/权限矩阵、默认拒绝 RBAC、题库/算法/报告模板/Agent 工作流发布、内容审批发布与退款审计封装
 
 ### 验证状态
 
@@ -249,7 +250,7 @@ pnpm build
 
 ### Current Progress
 
-Stages 1–11 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
+Stages 1–12 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 
 - Monorepo and frontend/backend scaffolding
 - Shared domain enums and DTOs
@@ -265,6 +266,7 @@ Stages 1–11 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 - Behavior event tracking, consent-based stop-collection, reassessment trends, operations dashboard, aggregate exports, and small-cell suppression
 - AI multi-agent content generation, LLM provider abstraction, deterministic mock, compliance gate, failure isolation, retry cap, and version traceability
 - Content draft management, platform/status/date/tag filtering, edit version history, manual confirmation for risk-flagged drafts, approve/reject/discard state transitions, API publishing, and manual export records
+- Admin service APIs, admin users/roles/permission matrix, default-deny RBAC, question-bank/algorithm/report-template/Agent-workflow publishing, content approval/publishing wrappers, and refund audit logging
 
 ### Verification
 

@@ -74,8 +74,7 @@ export const ConstitutionJudgment = {
   /** 否（转化分 < 30） */
   NO: 'NO',
 } as const;
-export type ConstitutionJudgment =
-  (typeof ConstitutionJudgment)[keyof typeof ConstitutionJudgment];
+export type ConstitutionJudgment = (typeof ConstitutionJudgment)[keyof typeof ConstitutionJudgment];
 
 /* ────────────────────────────── 测评（R1-R3） ────────────────────────────── */
 
@@ -313,3 +312,26 @@ export const ConfigKind = {
   AGENT_WORKFLOW: 'AGENT_WORKFLOW',
 } as const;
 export type ConfigKind = (typeof ConfigKind)[keyof typeof ConfigKind];
+
+/* ────────────────────────────── 管理后台（R11/R12） ────────────────────────────── */
+
+/** 管理后台权限点。所有管理操作默认拒绝，必须显式授予权限。 */
+export const AdminPermission = {
+  /** 题库配置维护与发布 */
+  QUESTION_BANK_WRITE: 'QUESTION_BANK_WRITE',
+  /** 体质算法配置维护与发布 */
+  ALGORITHM_WRITE: 'ALGORITHM_WRITE',
+  /** 报告模板维护与发布 */
+  REPORT_TEMPLATE_WRITE: 'REPORT_TEMPLATE_WRITE',
+  /** AI Agent 工作流维护与发布 */
+  AGENT_WORKFLOW_WRITE: 'AGENT_WORKFLOW_WRITE',
+  /** 内容审批 */
+  CONTENT_APPROVE: 'CONTENT_APPROVE',
+  /** 内容发布 / 导出 */
+  CONTENT_PUBLISH: 'CONTENT_PUBLISH',
+  /** 订单退款 */
+  ORDER_REFUND: 'ORDER_REFUND',
+  /** 审计日志查看 */
+  AUDIT_READ: 'AUDIT_READ',
+} as const;
+export type AdminPermission = (typeof AdminPermission)[keyof typeof AdminPermission];

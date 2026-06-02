@@ -21,6 +21,13 @@ import {
   KnowledgeEntryEntity,
 } from '../../content-ai/content-ai.entities';
 import { ContentDraftEntity, ContentVersionEntity } from '../../content-mgmt/content-mgmt.entities';
+import {
+  AdminPermissionEntity,
+  AdminRoleEntity,
+  AdminRolePermissionEntity,
+  AdminUserEntity,
+  AuditLogEntity,
+} from '../../admin/admin.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -47,6 +54,11 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       ContentGenTaskEntity,
       ContentDraftEntity,
       ContentVersionEntity,
+      AdminUserEntity,
+      AdminRoleEntity,
+      AdminPermissionEntity,
+      AdminRolePermissionEntity,
+      AuditLogEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,
