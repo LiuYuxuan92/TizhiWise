@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { HealthController } from './health/health.controller';
 import { CryptoModule } from './infrastructure/crypto/crypto.module';
 import { DatabaseModule } from './infrastructure/database/database.module';
+import { GatewayModule } from './infrastructure/gateway/gateway.module';
 import { QueueInfrastructureModule } from './infrastructure/queue/queue.module';
 import { RedisInfrastructureModule } from './infrastructure/redis/redis.module';
 
@@ -15,6 +16,7 @@ import { RedisInfrastructureModule } from './infrastructure/redis/redis.module';
       cache: true,
     }),
     DatabaseModule,
+    GatewayModule,
     CryptoModule,
     RedisInfrastructureModule,
     QueueInfrastructureModule,
