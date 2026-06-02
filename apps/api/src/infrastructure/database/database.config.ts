@@ -12,6 +12,7 @@ import {
   ReportExportJobEntity,
   ReportShareLinkEntity,
 } from '../../report/report.entities';
+import { PaymentOrderEntity, PaymentTxnLogEntity } from '../../payment/payment.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -27,6 +28,8 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       ReportDeepAccessEntity,
       ReportShareLinkEntity,
       ReportExportJobEntity,
+      PaymentOrderEntity,
+      PaymentTxnLogEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

@@ -190,56 +190,56 @@
     - **Property 14: 权限-付费一致**
     - **Validates: Requirements 5.4, 6.6, 6.10**
 
-- [ ] 7. 支付订单、微信 JSAPI 与退款闭环（R6/R12）
-  - [ ] 7.1 实现 PaymentOrder / PaymentTxnLog / ReportAccess 数据模型与迁移
+- [x] 7. 支付订单、微信 JSAPI 与退款闭环（R6/R12）
+  - [x] 7.1 实现 PaymentOrder / PaymentTxnLog / ReportAccess 数据模型与迁移
     - 建立订单状态、支付流水、报告深度访问权限表
     - 添加有效订单唯一约束，防重复付费
     - _Requirements: 6.3, 6.7, 6.9_
 
-  - [ ] 7.2 实现 PaymentService.createOrder
+  - [x] 7.2 实现 PaymentService.createOrder
     - 已付费报告直接放行或返回已有权益
     - 未付费时创建唯一订单并生成微信 JSAPI 支付参数
     - 下单使用 idempotencyKey 防重复创建
     - _Requirements: 6.1, 6.2, 6.3, 6.7_
 
-  - [ ] 7.3 实现微信支付回调验签与幂等处理
+  - [x] 7.3 实现微信支付回调验签与幂等处理
     - 校验 API v3 签名、timestamp 时间窗、nonce 防重放
     - 回调成功后更新订单为 PAID 并开通深度报告权限
     - 重复回调不得重复产生副作用
     - _Requirements: 6.4, 6.5, 6.6, 12.4_
 
-  - [ ] 7.4 实现订单状态查询、超时关闭与重发
+  - [x] 7.4 实现订单状态查询、超时关闭与重发
     - queryStatus 返回服务端权威状态
     - closeExpiredOrders 关闭超时 PENDING 订单
     - CLOSED 后允许重新创建订单
     - _Requirements: 6.5, 6.8_
 
-  - [ ] 7.5 实现后台退款与权限回收
+  - [x] 7.5 实现后台退款与权限回收
     - 支持按订单退款、记录操作人和原因
     - 退款成功后回收报告深度访问权限
     - _Requirements: 6.10_
 
-  - [ ]* 7.6 编写属性测试：回调幂等
+  - [x]* 7.6 编写属性测试：回调幂等
     - **Property 10: 回调幂等**
     - **Validates: Requirements 6.4**
 
-  - [ ]* 7.7 编写属性测试：订单状态机合法
+  - [x]* 7.7 编写属性测试：订单状态机合法
     - **Property 11: 订单状态机合法**
     - **Validates: Requirements 6.3**
 
-  - [ ]* 7.8 编写属性测试：防重复付费
+  - [x]* 7.8 编写属性测试：防重复付费
     - **Property 12: 防重复付费**
     - **Validates: Requirements 6.7**
 
-  - [ ]* 7.9 编写属性测试：验签前不改状态
+  - [x]* 7.9 编写属性测试：验签前不改状态
     - **Property 13: 验签前不改状态**
     - **Validates: Requirements 6.4**
 
-  - [ ]* 7.10 编写属性测试：退款回收
+  - [x]* 7.10 编写属性测试：退款回收
     - **Property 15: 退款回收**
     - **Validates: Requirements 6.10**
 
-  - [ ]* 7.11 编写属性测试：超时关闭可重发
+  - [x]* 7.11 编写属性测试：超时关闭可重发
     - **Property 16: 超时关闭可重发**
     - **Validates: Requirements 6.8**
 
