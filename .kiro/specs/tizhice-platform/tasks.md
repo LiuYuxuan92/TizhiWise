@@ -564,7 +564,7 @@
     - 生产密钥、证书、微信支付、LLM Provider 配置说明
     - _Requirements: 12.1, 12.4, 12.8_
 
-- [ ] 17. Final Checkpoint - 全平台功能闭环验收
+- [x] 17. Final Checkpoint - 全平台功能闭环验收
   - 全量运行 unit、property、integration、E2E、typecheck、lint、build
   - 对照 requirements.md R1-R12 逐项确认有实现、有测试、有运行证据
   - 确认 README、环境变量示例和部署手册与实际代码一致

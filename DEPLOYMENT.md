@@ -14,9 +14,9 @@ This runbook covers Stage 16 deployment preparation for the API, H5 app, admin c
 - `JWT_SECRET`: JWT/HMAC token secret.
 - `API_PORT`: API listen port, default `3000`.
 - `API_GLOBAL_PREFIX`: API prefix, default `api`.
-- `WECHAT_OAUTH_APP_ID`, `WECHAT_OAUTH_APP_SECRET`: WeChat OAuth credentials.
-- `WECHAT_PAY_MCH_ID`, `WECHAT_PAY_API_V3_KEY`, `WECHAT_PAY_CERT_SERIAL`: WeChat Pay credentials.
-- `LLM_PROVIDER`, `LLM_API_KEY`, `LLM_MODEL`: LLM provider configuration. Use deterministic mock in CI.
+- `WECHAT_APP_ID`, `WECHAT_APP_SECRET`: WeChat OAuth / JS-SDK credentials.
+- `WECHAT_PAY_MCH_ID`, `WECHAT_PAY_API_V3_KEY`, `WECHAT_PAY_SERIAL_NO`, `WECHAT_PAY_PRIVATE_KEY_PATH`: WeChat Pay credentials.
+- `LLM_PROVIDER`, `LLM_API_KEY`, `LLM_BASE_URL`: LLM provider configuration. Use deterministic mock in CI.
 
 ## Local smoke deployment / 本地冒烟部署
 
@@ -24,6 +24,7 @@ This runbook covers Stage 16 deployment preparation for the API, H5 app, admin c
 pnpm install
 pnpm test:unit
 pnpm test:integration
+pnpm test:e2e
 pnpm typecheck
 pnpm lint
 pnpm build
@@ -75,6 +76,7 @@ A release is acceptable only when all commands below pass:
 git diff --check
 pnpm test:unit
 pnpm test:integration
+pnpm test:e2e
 pnpm typecheck
 pnpm lint
 pnpm build
