@@ -1,0 +1,49 @@
+{
+  "name": "tizhice-platform",
+  "version": "0.0.0",
+  "private": true,
+  "description": "知体（tizhice.cn）中医体质健康测评平台 - monorepo",
+  "packageManager": "pnpm@10.27.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:shared": "pnpm --filter @tizhice/shared build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{ts,vue,js,mjs,cjs,json,md,html}\"",
+    "format:check": "prettier --check \"**/*.{ts,vue,js,mjs,cjs,json,md,html}\"",
+    "dev:api": "pnpm --filter @tizhice/api start:dev",
+    "dev:h5": "pnpm --filter @tizhice/h5 dev",
+    "dev:admin": "pnpm --filter @tizhice/admin dev",
+    "clean": "pnpm -r exec rimraf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run --exclude \"**/*.int.spec.ts\"",
+    "test:integration": "vitest run apps/api/src/test/testcontainers.int.spec.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.4",
+    "@testcontainers/postgresql": "12.0.1",
+    "@testcontainers/redis": "12.0.1",
+    "eslint": "9.39.4",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-vue": "10.9.1",
+    "fast-check": "4.8.0",
+    "globals": "16.5.0",
+    "prettier": "3.8.3",
+    "testcontainers": "12.0.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.60.0",
+    "vitest": "4.1.8",
+    "vue-eslint-parser": "10.4.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@nestjs/core"
+    ]
+  }
+}

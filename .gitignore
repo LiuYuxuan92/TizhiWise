@@ -1,0 +1,42 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 构建产物
+dist/
+build/
+*.tsbuildinfo
+
+# 环境变量（仅提交 .env.example）
+.env
+.env.local
+.env.*.local
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 测试与覆盖率
+coverage/
+.nyc_output/
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Vite 缓存
+.vite/
+*.timestamp-*.mjs
+
+# 临时文件
+*.tmp
+.cache/
