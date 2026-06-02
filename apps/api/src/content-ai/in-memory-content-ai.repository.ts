@@ -3,6 +3,8 @@ import type {
   ContentDraft,
   ContentGenTask,
   KnowledgeEntry,
+  ListDraftsFilters,
+  PaginatedList,
 } from '@tizhice/shared';
 
 export class InMemoryContentAiRepository {
@@ -46,6 +48,13 @@ export class InMemoryContentAiRepository {
     this.drafts.set(draft.id, cloneDraft(draft));
   }
 
+  async updateDraft(draft: ContentDraft): Promise<void> {
+    if (!this.drafts.has(draft.id)) {
+      throw new Error(`Content draft not found: ${draft.id}`);
+    }
+    this.drafts.set(draft.id, cloneDraft(draft));
+  }
+
   async getDraftOrThrow(draftId: string): Promise<ContentDraft> {
     const draft = this.drafts.get(draftId);
     if (!draft) {
@@ -56,6 +65,29 @@ export class InMemoryContentAiRepository {
 
   async listDraftsByTask(taskId: string): Promise<ContentDraft[]> {
     return [...this.drafts.values()].filter((draft) => draft.taskId === taskId).map(cloneDraft);
+  }
+
+  async listDrafts(
+    filters: ListDraftsFilters & { page?: number; pageSize?: number } = {},
+  ): Promise<PaginatedList<ContentDraft>> {
+    const page = Math.max(1, filters.page ?? 1);
+    const pageSize = Math.max(1, filters.pageSize ?? 20);
+    const [startDate, endDate] = filters.dateRange ?? [];
+    const requiredTags = filters.tags ?? [];
+    const filtered = [...this.drafts.values()]
+      .filter((draft) => (filters.platform ? draft.platform === filters.platform : true))
+      .filter((draft) => (filters.status ? draft.status === filters.status : true))
+      .filter((draft) => (startDate ? draft.createdAt >= startDate : true))
+      .filter((draft) => (endDate ? draft.createdAt <= endDate : true))
+      .filter((draft) => requiredTags.every((tag) => draft.tags.includes(tag)))
+      .sort((left, right) => right.createdAt.getTime() - left.createdAt.getTime());
+
+    return {
+      items: filtered.slice((page - 1) * pageSize, page * pageSize).map(cloneDraft),
+      total: filtered.length,
+      page,
+      pageSize,
+    };
   }
 
   async publishWorkflow(config: AgentWorkflowConfig): Promise<void> {

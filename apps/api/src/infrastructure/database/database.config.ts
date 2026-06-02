@@ -20,6 +20,7 @@ import {
   ContentGenTaskEntity,
   KnowledgeEntryEntity,
 } from '../../content-ai/content-ai.entities';
+import { ContentDraftEntity, ContentVersionEntity } from '../../content-mgmt/content-mgmt.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -44,6 +45,8 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       AgentWorkflowConfigEntity,
       KnowledgeEntryEntity,
       ContentGenTaskEntity,
+      ContentDraftEntity,
+      ContentVersionEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,
