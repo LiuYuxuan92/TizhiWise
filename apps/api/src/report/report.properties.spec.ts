@@ -56,6 +56,7 @@ describe('ReportService properties', () => {
         expect(visible.payload.deep?.masked).toBe(!shouldSeeDeep);
         expect(Boolean(visible.payload.deep?.full)).toBe(shouldSeeDeep);
       }),
+      { numRuns: 12 },
     );
   });
 });

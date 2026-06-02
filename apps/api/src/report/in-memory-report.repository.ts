@@ -60,6 +60,38 @@ export class InMemoryReportRepository {
       .map(cloneReport);
   }
 
+  async mergeAnonymousReports(userId: string, sessionIds: readonly string[]): Promise<number> {
+    const sessionSet = new Set(sessionIds);
+    let merged = 0;
+    for (const report of this.reports.values()) {
+      if (sessionSet.has(report.sessionId) && report.userId !== userId) {
+        report.userId = userId;
+        merged += 1;
+      }
+    }
+    return merged;
+  }
+
+  async anonymizeUserReports(userId: string, anonymizedUserId: string): Promise<number> {
+    let changed = 0;
+    for (const report of this.reports.values()) {
+      if (report.userId === userId) {
+        report.userId = anonymizedUserId;
+        changed += 1;
+      }
+    }
+    for (const [key, grant] of this.accessGrants.entries()) {
+      if (grant.userId === userId) {
+        this.accessGrants.set(key, {
+          ...cloneGrant(grant),
+          userId: anonymizedUserId,
+          revokedAt: grant.revokedAt ?? new Date(),
+        });
+      }
+    }
+    return changed;
+  }
+
   async grantDeepAccess(grant: ReportAccessGrant): Promise<void> {
     this.accessGrants.set(accessKey(grant.reportId, grant.userId), cloneGrant(grant));
   }

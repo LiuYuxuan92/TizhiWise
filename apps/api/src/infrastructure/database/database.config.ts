@@ -13,6 +13,7 @@ import {
   ReportShareLinkEntity,
 } from '../../report/report.entities';
 import { PaymentOrderEntity, PaymentTxnLogEntity } from '../../payment/payment.entities';
+import { ConsentEntity, UserEntity } from '../../user/user.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -30,6 +31,8 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       ReportExportJobEntity,
       PaymentOrderEntity,
       PaymentTxnLogEntity,
+      UserEntity,
+      ConsentEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

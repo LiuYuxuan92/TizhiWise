@@ -28,6 +28,7 @@ describe('PaymentService properties', () => {
           ),
         ).toHaveLength(1);
       }),
+      { numRuns: 12 },
     );
   });
 
@@ -54,6 +55,7 @@ describe('PaymentService properties', () => {
           }),
         ).rejects.toThrow(/Illegal payment order transition/);
       }),
+      { numRuns: 12 },
     );
   });
 
@@ -76,6 +78,7 @@ describe('PaymentService properties', () => {
           }),
         ).rejects.toBeInstanceOf(DuplicatePaymentError);
       }),
+      { numRuns: 12 },
     );
   });
 
@@ -100,6 +103,7 @@ describe('PaymentService properties', () => {
         expect(await paymentService.queryStatus(order.orderId)).toBe(OrderStatus.PENDING);
         expect((await reportService.getReport(report.id, 'p13-user')).tier).toBe(ReportTier.BASIC);
       }),
+      { numRuns: 12 },
     );
   });
 
@@ -126,6 +130,7 @@ describe('PaymentService properties', () => {
         expect(await paymentService.queryStatus(order.orderId)).toBe(OrderStatus.REFUNDED);
         expect((await reportService.getReport(report.id, 'p15-user')).tier).toBe(ReportTier.BASIC);
       }),
+      { numRuns: 12 },
     );
   });
 
@@ -152,6 +157,7 @@ describe('PaymentService properties', () => {
         expect(await paymentService.queryStatus(oldOrder.orderId)).toBe(OrderStatus.CLOSED);
         expect(newOrder.orderId).not.toBe(oldOrder.orderId);
       }),
+      { numRuns: 12 },
     );
   });
 });

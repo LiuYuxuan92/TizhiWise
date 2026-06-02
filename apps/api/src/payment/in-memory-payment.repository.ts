@@ -50,6 +50,36 @@ export class InMemoryPaymentRepository {
     return order ? cloneOrder(order) : null;
   }
 
+  async listOrdersByUser(userId: string): Promise<PaymentOrder[]> {
+    return [...this.orders.values()]
+      .filter((order) => order.userId === userId)
+      .sort((left, right) => right.createdAt.getTime() - left.createdAt.getTime())
+      .map(cloneOrder);
+  }
+
+  async mergeAnonymousOrders(userId: string, anonymousId: string): Promise<number> {
+    const anonymousUserId = anonymousUserIdFor(anonymousId);
+    let merged = 0;
+    for (const order of this.orders.values()) {
+      if (order.userId === anonymousUserId) {
+        order.userId = userId;
+        merged += 1;
+      }
+    }
+    return merged;
+  }
+
+  async anonymizeUserOrders(userId: string, anonymizedUserId: string): Promise<number> {
+    let changed = 0;
+    for (const order of this.orders.values()) {
+      if (order.userId === userId) {
+        order.userId = anonymizedUserId;
+        changed += 1;
+      }
+    }
+    return changed;
+  }
+
   async listPendingCreatedBefore(cutoff: Date): Promise<PaymentOrder[]> {
     return [...this.orders.values()]
       .filter(
@@ -87,6 +117,10 @@ export class InMemoryPaymentRepository {
   async markCallbackNonce(nonce: string): Promise<void> {
     this.processedCallbackNonces.add(nonce);
   }
+}
+
+export function anonymousUserIdFor(anonymousId: string): string {
+  return `anon:${anonymousId}`;
 }
 
 export function newPendingOrder(input: {

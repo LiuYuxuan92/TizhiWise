@@ -73,6 +73,48 @@ export class InMemoryAssessmentRepository {
     return sessions[0] ? cloneSession(sessions[0]) : null;
   }
 
+  async listSessionsByUser(userId: string): Promise<AssessmentSession[]> {
+    return [...this.sessions.values()]
+      .filter((session) => session.userId === userId)
+      .sort((left, right) => right.startedAt.getTime() - left.startedAt.getTime())
+      .map(cloneSession);
+  }
+
+  async mergeAnonymousSessions(
+    userId: string,
+    anonymousId: string,
+  ): Promise<{ merged: number; sessionIds: string[] }> {
+    let merged = 0;
+    const sessionIds: string[] = [];
+    for (const session of this.sessions.values()) {
+      if (session.anonymousId !== anonymousId) {
+        continue;
+      }
+      sessionIds.push(session.id);
+      if (session.userId !== userId || session.anonymousId !== undefined) {
+        if (session.userId !== userId || session.anonymousId !== null) {
+          merged += 1;
+        }
+        session.userId = userId;
+        session.anonymousId = null;
+      }
+    }
+    return { merged, sessionIds };
+  }
+
+  async anonymizeUserSessions(userId: string, anonymizedUserId: string): Promise<number> {
+    let changed = 0;
+    for (const session of this.sessions.values()) {
+      if (session.userId === userId) {
+        session.userId = anonymizedUserId;
+        session.anonymousId = null;
+        session.baseProfile = undefined;
+        changed += 1;
+      }
+    }
+    return changed;
+  }
+
   async upsertAnswer(answer: StoredAnswer): Promise<void> {
     const existing = this.answers.get(answer.sessionId) ?? [];
     const index = existing.findIndex((candidate) => candidate.questionId === answer.questionId);
