@@ -111,7 +111,7 @@ pnpm build
 
 ### 当前实现进度
 
-已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–15：
+已完成 `.kiro/specs/tizhice-platform/tasks.md` 中阶段 1–16：
 
 - Monorepo 与前后端基础骨架
 - 共享领域枚举与 DTO
@@ -131,6 +131,7 @@ pnpm build
 - H5 用户旅程：双通道入口、体质/痛症逐题作答、红旗征提示、中断恢复、基础/深度报告、模拟支付解锁、微信授权归并、我的中心、分享/导出/埋点与首屏骨架屏
 - 管理后台前端：登录与权限菜单、题库/算法/报告模板/AI 工作流配置页、内容草稿审批发布页、运营看板、聚合导出、审计日志与退款权限回收操作
 - API 接入层与安全加固：统一错误响应、traceId 中间件、全局输入校验与注入拦截、JWT/RBAC/限流 guard、结构化脱敏日志、关键服务重试/降级工具
+- 集成/E2E 与发布准备：体质测评、痛症红旗征、支付解锁、匿名归并、AI 内容发布、配置快照、安全合规端到端验收，Docker Compose 与部署运行手册
 
 ### 验证状态
 
@@ -253,7 +254,7 @@ pnpm build
 
 ### Current Progress
 
-Stages 1–15 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
+Stages 1–16 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 
 - Monorepo and frontend/backend scaffolding
 - Shared domain enums and DTOs
@@ -273,6 +274,7 @@ Stages 1–15 in `.kiro/specs/tizhice-platform/tasks.md` are complete:
 - H5 user journey: dual-channel entry, constitution/pain step-by-step assessments, red-flag warnings, resume flow, basic/deep reports, mock payment unlock, WeChat login merge, My Center, sharing/export/tracking, and skeleton-backed route splitting
 - Admin frontend: login and permission-aware menus, question-bank/algorithm/report-template/AI-workflow configuration, content draft approval/publishing, operations dashboard, aggregate export, audit logs, and refund/access-revocation actions
 - API gateway and security hardening: unified error responses, traceId middleware, global validation and injection blocking, JWT/RBAC/rate-limit guards, structured redacted logging, and retry/fallback utilities for critical services
+- Integration/E2E and release preparation: constitution assessment, pain red flags, payment unlock, anonymous merge, AI content publishing, config snapshots, security/compliance acceptance flows, Docker Compose, and deployment runbook
 
 ### Verification
 

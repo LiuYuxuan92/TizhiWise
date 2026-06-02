@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tizhice
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  api:
+    build:
+      context: .
+      target: api
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      API_PORT: 3000
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tizhice
+      REDIS_URL: redis://redis:6379
+      APP_ENCRYPTION_KEY: replace-with-32-byte-base64-key
+      JWT_SECRET: replace-with-production-jwt-secret
+      WECHAT_PAY_MCH_ID: configure-in-production
+      WECHAT_PAY_API_V3_KEY: configure-in-production
+      LLM_PROVIDER: mock
+    ports:
+      - '3000:3000'
+
+  web:
+    build:
+      context: .
+      target: web
+    depends_on:
+      - api
+    ports:
+      - '8080:80'
+
+volumes:
+  pg_data:

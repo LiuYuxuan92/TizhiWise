@@ -8,6 +8,7 @@ export default defineConfig({
     include: [
       'apps/**/*.spec.ts',
       'apps/**/*.int.spec.ts',
+      'apps/**/*.e2e.spec.ts',
       'packages/**/*.spec.ts',
       'packages/**/*.int.spec.ts',
     ],

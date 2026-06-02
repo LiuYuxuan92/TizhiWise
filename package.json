@@ -21,8 +21,9 @@
     "clean": "pnpm -r exec rimraf dist",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:unit": "vitest run --exclude \"**/*.int.spec.ts\"",
-    "test:integration": "vitest run apps/api/src/test/testcontainers.int.spec.ts"
+    "test:unit": "vitest run --exclude \"**/*.int.spec.ts\" --exclude \"**/*.e2e.spec.ts\"",
+    "test:integration": "vitest run apps/api/src/test/testcontainers.int.spec.ts",
+    "test:e2e": "vitest run apps/api/src/e2e/platform.e2e.spec.ts"
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
