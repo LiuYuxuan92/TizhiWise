@@ -15,6 +15,11 @@ import {
 import { PaymentOrderEntity, PaymentTxnLogEntity } from '../../payment/payment.entities';
 import { ConsentEntity, UserEntity } from '../../user/user.entities';
 import { AggregateExportEntity, BehaviorEventEntity } from '../../tracking/tracking.entities';
+import {
+  AgentWorkflowConfigEntity,
+  ContentGenTaskEntity,
+  KnowledgeEntryEntity,
+} from '../../content-ai/content-ai.entities';
 
 export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
   return {
@@ -36,6 +41,9 @@ export function createTypeOrmOptions(databaseUrl: string): DataSourceOptions {
       ConsentEntity,
       BehaviorEventEntity,
       AggregateExportEntity,
+      AgentWorkflowConfigEntity,
+      KnowledgeEntryEntity,
+      ContentGenTaskEntity,
     ],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

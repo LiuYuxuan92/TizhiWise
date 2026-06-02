@@ -312,49 +312,49 @@
     - **Property 30: 聚合最小样本**
     - **Validates: Requirements 10.5**
 
-- [ ] 10. AI 多 Agent 内容生成系统（R7/R12）
-  - [ ] 10.1 实现 AgentWorkflowConfig / KnowledgeEntry / ContentGenTask 数据模型
+- [x] 10. AI 多 Agent 内容生成系统（R7/R12）
+  - [x] 10.1 实现 AgentWorkflowConfig / KnowledgeEntry / ContentGenTask 数据模型
     - 支持 Agent 角色、顺序、提示词模板、模型、超时、重试配置
     - 记录 workflowVersion、modelVersions、promptVersions
     - _Requirements: 7.1, 7.8, 7.10, 7.12_
 
-  - [ ] 10.2 实现 LLM Provider 抽象与受控 Mock
+  - [x] 10.2 实现 LLM Provider 抽象与受控 Mock
     - 封装 chat/generate 接口、超时、错误分类、限流错误
     - 测试环境使用 deterministic mock/录制回放，避免真实成本和不稳定性
     - _Requirements: 7.11, 12.8_
 
-  - [ ] 10.3 实现内容生成任务编排器
+  - [x] 10.3 实现内容生成任务编排器
     - 选题、撰写、审核、配图建议 Agent 按 DAG 串并行执行
     - 支持小红书、视频号、朋友圈平台差异化输出
     - _Requirements: 7.2, 7.3, 7.4, 7.5, 7.9_
 
-  - [ ] 10.4 实现合规审核与重写闭环
+  - [x] 10.4 实现合规审核与重写闭环
     - 审核医疗功效宣称、绝对化用语等违规表述
     - 不合规时退回重写或标记人工修改，不得直接进入待发布状态
     - _Requirements: 7.6, 7.7, 12.9_
 
-  - [ ] 10.5 实现 AI 任务队列 Worker 与失败隔离
+  - [x] 10.5 实现 AI 任务队列 Worker 与失败隔离
     - BullMQ 异步处理内容生成任务
     - 单任务超重试失败只标记该任务，不影响其他任务
     - _Requirements: 7.11, 12.8_
 
-  - [ ]* 10.6 编写属性测试：合规门禁
+  - [x]* 10.6 编写属性测试：合规门禁
     - **Property 22: 合规门禁**
     - **Validates: Requirements 7.7, 8.7**
 
-  - [ ]* 10.7 编写属性测试：失败隔离
+  - [x]* 10.7 编写属性测试：失败隔离
     - **Property 23: 失败隔离**
     - **Validates: Requirements 7.11**
 
-  - [ ]* 10.8 编写属性测试：平台产物完整
+  - [x]* 10.8 编写属性测试：平台产物完整
     - **Property 24: 平台产物完整**
     - **Validates: Requirements 7.9**
 
-  - [ ]* 10.9 编写属性测试：版本可追溯
+  - [x]* 10.9 编写属性测试：版本可追溯
     - **Property 25: 版本可追溯**
     - **Validates: Requirements 7.12**
 
-  - [ ]* 10.10 编写属性测试：重试上限
+  - [x]* 10.10 编写属性测试：重试上限
     - **Property 26: 重试上限**
     - **Validates: Requirements 7.11**
 
